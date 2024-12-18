@@ -6,6 +6,7 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import FlightBooking from "./pages/FlightBooking";
+import Login from "./pages/Login";
 
 // Pages
 // import FlightBooking from "./pages/FlightBooking";
@@ -13,7 +14,10 @@ import FlightBooking from "./pages/FlightBooking";
 // import OrdersList from "./pages/OrdersList";
 
 // import ProtectedRoute from "./components/ProtectedRoute";
-// import Navbar from "./components/NavBar";
+import ProtectedRoute from "./components/ProtectedRoute"
+import Navbar from "./components/Navbar";
+import OrdersList from "./pages/OrdersList";
+import UserProfile from "./pages/UserProfile";
 // import UserProfile from "./pages/UserProfile";
 
 const App = () => {
@@ -22,10 +26,29 @@ const App = () => {
       <LocalizationProvider dateAdapter={AdapterDayjs}>
 
         <Router>
-          <div>Salomalkum</div>
-          {/* <Navbar /> */}
+          <Navbar />
+
           <Routes>
             <Route path="/" element={<FlightBooking/>}/>
+            <Route path="/login" element={<Login/>}/>
+            <Route
+              path='/orders'
+              element={
+                <ProtectedRoute>
+                  <OrdersList  />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path='/profile'
+              element={
+                <ProtectedRoute>
+                  <UserProfile />
+                </ProtectedRoute>
+              }
+            />
+
+
            </Routes>
           <ToastContainer />
         </Router>

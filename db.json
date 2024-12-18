@@ -1,4 +1,68 @@
 {
-    "flights":[],
-    "users":[]
+  "flights": [
+    {
+      "id": "f44b",
+      "destination": "da",
+      "flyDate": "2024-12-17T19:00:00.000Z",
+      "returnDate": "2024-12-19T19:00:00.000Z",
+      "children": 0,
+      "seats": 1,
+      "userId": 1
+    },
+    {
+      "id": "8599",
+      "destination": "da",
+      "flyDate": "2024-12-17T19:00:00.000Z",
+      "returnDate": "2024-12-18T19:00:00.000Z",
+      "children": 0,
+      "seats": 1,
+      "userId": 1
+    },
+    {
+      "id": "e076",
+      "destination": "da",
+      "flyDate": "2024-12-17T19:00:00.000Z",
+      "returnDate": "2024-12-18T19:00:00.000Z",
+      "children": 0,
+      "seats": 1,
+      "userId": 1
+    },
+    {
+      "id": "a5d8",
+      "destination": "da",
+      "flyDate": "2024-12-17T19:00:00.000Z",
+      "returnDate": "2024-12-18T19:00:00.000Z",
+      "children": 0,
+      "seats": 1,
+      "userId": 1
+    },
+    {
+      "id": "898d",
+      "destination": "da",
+      "flyDate": "2024-12-17T19:00:00.000Z",
+      "returnDate": "2024-12-18T19:00:00.000Z",
+      "children": 0,
+      "seats": 1,
+      "userId": 1
+    },
+    {
+      "id": "f4b0",
+      "destination": "da",
+      "flyDate": "2024-12-17T19:00:00.000Z",
+      "returnDate": "2024-12-18T19:00:00.000Z",
+      "children": 0,
+      "seats": 1,
+      "userId": 1
+    },
+    {
+      "id": "1395",
+      "destination": "da",
+      "flyDate": "2024-12-17T19:00:00.000Z",
+      "returnDate": "2024-12-18T19:00:00.000Z",
+      "children": 0,
+      "seats": 1,
+      "userId": 1
+    }
+  ],
+  "users": []
 }

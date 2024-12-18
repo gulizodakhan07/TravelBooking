@@ -25,28 +25,90 @@ const FlightBooking = () => {
     const { isAuthenticated, user } = useSelector((state) => state.auth);
     const { currentBooking } = useSelector((state) => state.flights);
 
+    // const handleSubmit = async (e) => {
+    //     e.preventDefault();
+    //     console.log(isAuthenticated)
+    //     if(!isAuthenticated){
+    //         navigate("/login",{
+    //             state: {
+    //                 from: {pathname: "/"},
+    //                 bookingData: currentBooking
+    //             }
+    //         })
+    //         return
+    //     }
+           
+        
+        
+    //     try {
+    //         const order = {
+    //             ...currentBooking,
+    //             userId: user.id
+    //         }
+    //         const newOrder = await createFlightOrder(order)
+    //         dispatch(addOrder(newOrder))
+    //         toast.success("Flight booked successfully!",{
+    //             position: "bottom-right",
+    //             autoClose: 3000,
+    //             onClose: ()=> navigate("/orders")
+    //         })
+            
+    //     } catch (error) {
+    //         console.log(error)
+    //         toast.error("Fill-in Dates",{
+    //             position: "bottom-right",
+    //             autoClose: 3000
+
+    //         })
+            
+            
+    //     }
+
+
+    // };
     const handleSubmit = async (e) => {
         e.preventDefault();
-        if(currentBooking.flyDate || currentBooking.returnDate){
-            toast.error("Fill-in Dates",{
-                position: "bottom-right",
-                autoClose: 3000
-
-            })
-            return
+    
+        if (!currentBooking.flyDate || !currentBooking.returnDate) {
+          toast.error("Fill-in dates", {
+            position: "bottom-right",
+            autoClose: 3000,
+          });
+          return;
         }
-        if(!isAuthenticated){
-            navigate("/login",{
-                state: {
-                    from: {pathname: "/"},
-                    bookingData: currentBooking
-                }
-            })
-            return
+    
+        if (!isAuthenticated) {
+          navigate("/login", {
+            state: {
+              from: { pathname: "/" },
+              bookingData: currentBooking,
+            },
+          });
+          return;
         }
-
-
-    };
+    
+        try {
+          const order = {
+            ...currentBooking,
+            userId: user.id,
+          };
+    
+          await createFlightOrder(order);
+    
+          toast.success("Flight booked successfully!", {
+            position: "bottom-right",
+            autoClose: 1500,
+            onClose: () => navigate("/orders")
+          });
+        } catch (error) {
+          console.error(error);
+          toast.error("Booking failed", {
+            position: "bottom-right",
+            autoClose: 3000,
+          });
+        }
+      };
+    
 
     return (
         <Container maxWidth='sm'>
@@ -109,10 +171,10 @@ const FlightBooking = () => {
                             minDate={dayjs()}
                             label='Departure Date'
                             value={currentBooking.flyDate}
-                            onChange={(newValue) =>
+                            onChange={(e) =>
                                 dispatch(
                                     setCurrentBooking({
-                                        flyDate: newValue,
+                                        flyDate: e.target.value,
                                     })
                                 )
                             }
@@ -127,10 +189,10 @@ const FlightBooking = () => {
                         <DatePicker
                             minDate={dayjs()}
                             value={currentBooking.returnDate}
-                            onChange={(newValue) =>
+                            onChange={(e) =>
                                 dispatch(
                                     setCurrentBooking({
-                                        returnDate: newValue,
+                                        returnDate: e.target.value,
                                     })
                                 )
                             }
